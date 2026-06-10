@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Santhosh Nandaluru – Python Developer | Java | QA Automation | SQL. Fresher portfolio showcasing skills and projects."/>
+  <meta name="keywords" content="Santhosh Nandaluru, Python Developer, Java, QA Automation, SQL, Software Developer, AI Engineer, Fresher"/>
+  <meta name="author" content="Santhosh Nandaluru"/>
+  <title>Santhosh Nandaluru — Developer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+/* =========================================================
+   DESIGN TOKENS
+   ========================================================= */
+:root {
+  --bg:       #070b14;
+  --surface:  #0d1526;
+  --surface2: #111e35;
+  --surface3: #162040;
+  --border:   rgba(99,179,237,0.13);
+  --accent:   #38bdf8;
+  --accent2:  #818cf8;
+  --accent3:  #34d399;
+  --accent4:  #fb923c;
+  --text:     #e2e8f0;
+  --muted:    #7e9ab5;
+  --glass:    rgba(13,21,38,0.72);
+  --radius:   16px;
+  --radius-sm:10px;
+  --font-d:   'Space Grotesk', sans-serif;
+  --font-m:   'JetBrains Mono', monospace;
+}
+[data-theme="light"] {
+  --bg:      #f0f4fa;
+  --surface: #ffffff;
+  --surface2:#e8f0fc;
+  --surface3:#dce8f8;
+  --border:  rgba(56,189,248,0.18);
+  --text:    #0f172a;
+  --muted:   #4a6080;
+  --glass:   rgba(255,255,255,0.88);
+}
+
+/* =========================================================
+   RESET
+   ========================================================= */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-d);background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden;transition:background .4s,color .4s}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+
+/* =========================================================
+   LOADER
+   ========================================================= */
+#loader{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--bg);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;
+  transition:opacity .7s;
+}
+#loader.hidden{opacity:0;pointer-events:none}
+.ld-logo{font-family:var(--font-m);font-size:1.4rem;color:var(--accent);letter-spacing:.12em}
+.ld-bar-track{width:220px;height:3px;background:var(--surface2);border-radius:10px;overflow:hidden}
+.ld-bar-fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:10px;animation:ldFill 1s ease forwards}
+@keyframes ldFill{to{width:100%}}
+.ld-text{font-family:var(--font-m);font-size:.72rem;color:var(--muted);letter-spacing:.2em}
+
+/* =========================================================
+   PARTICLES CANVAS
+   ========================================================= */
+#particles-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.45}
+
+/* =========================================================
+   NAV
+   ========================================================= */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  height:64px;padding:0 clamp(16px,5vw,64px);
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--glass);backdrop-filter:blur(22px);
+  border-bottom:1px solid var(--border);
+  transition:background .4s;
+}
+.nav-logo{font-family:var(--font-m);font-size:.95rem;font-weight:600;color:var(--accent);letter-spacing:.04em}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-size:.82rem;font-weight:500;color:var(--muted);transition:color .2s;letter-spacing:.03em;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--accent);border-radius:2px;transform:scaleX(0);transition:transform .2s}
+.nav-links a:hover{color:var(--accent)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-links a.active{color:var(--accent)}
+.nav-r{display:flex;align-items:center;gap:12px}
+#theme-btn{background:none;border:1px solid var(--border);border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:.95rem;display:flex;align-items:center;justify-content:center;color:var(--text);transition:border-color .2s}
+#theme-btn:hover{border-color:var(--accent)}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.ham span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+.mob-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--surface);padding:20px 24px;border-bottom:1px solid var(--border);flex-direction:column;gap:0;z-index:499}
+.mob-menu.open{display:flex}
+.mob-menu a{font-size:.95rem;color:var(--muted);padding:13px 0;border-bottom:1px solid var(--border);transition:color .2s}
+.mob-menu a:hover{color:var(--accent)}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+#hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding:100px clamp(20px,8vw,120px) 60px;
+  position:relative;overflow:hidden;z-index:1;
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 80% 75% at 50% 50%,black 30%,transparent 100%);
+  z-index:0;
+}
+.hero-glow{
+  position:absolute;width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(56,189,248,.10) 0%,transparent 65%);
+  top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:0;
+}
+.hero-content{position:relative;z-index:2;max-width:820px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.22);
+  border-radius:100px;padding:6px 18px;
+  font-family:var(--font-m);font-size:.73rem;color:var(--accent3);
+  margin-bottom:26px;animation:fadeD .8s ease both;
+}
+.hero-badge-dot{width:7px;height:7px;background:var(--accent3);border-radius:50%;animation:pulseG 1.5s infinite}
+@keyframes pulseG{0%,100%{box-shadow:0 0 0 0 rgba(52,211,153,.5)}50%{box-shadow:0 0 0 6px rgba(52,211,153,0)}}
+.hero-name{
+  font-size:clamp(2.8rem,7.5vw,5.2rem);font-weight:700;line-height:1.04;
+  letter-spacing:-.025em;margin-bottom:14px;
+  animation:fadeD .9s .08s ease both;
+}
+.hero-name .grad{
+  background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 55%,var(--accent3) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-typing-wrap{
+  font-family:var(--font-m);font-size:clamp(1rem,2.4vw,1.25rem);
+  color:var(--muted);min-height:2.2em;margin-bottom:24px;
+  animation:fadeD 1s .18s ease both;
+}
+.cursor{display:inline-block;width:2px;height:1.1em;background:var(--accent);margin-left:2px;vertical-align:text-bottom;animation:blink .72s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.hero-desc{font-size:1.05rem;color:var(--muted);max-width:540px;margin-bottom:38px;animation:fadeD 1s .26s ease both;line-height:1.75}
+.hero-desc strong{color:var(--text)}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;animation:fadeD 1s .34s ease both}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 26px;border-radius:10px;
+  font-family:var(--font-d);font-size:.88rem;font-weight:600;
+  cursor:pointer;transition:all .22s;letter-spacing:.02em;border:none;
+}
+.btn-p{background:var(--accent);color:#070b14}
+.btn-p:hover{background:#7dd3fc;transform:translateY(-2px);box-shadow:0 8px 26px rgba(56,189,248,.32)}
+.btn-o{background:transparent;color:var(--text);border:1px solid var(--border)}
+.btn-o:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.btn-g{background:rgba(129,140,248,.1);color:var(--accent2);border:1px solid rgba(129,140,248,.25)}
+.btn-g:hover{background:rgba(129,140,248,.2);transform:translateY(-2px)}
+.hero-socials{display:flex;gap:12px;margin-top:46px;animation:fadeD 1s .42s ease both}
+.soc-link{
+  width:40px;height:40px;border-radius:50%;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--muted);transition:all .22s;
+}
+.soc-link:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px);box-shadow:0 4px 16px rgba(56,189,248,.2)}
+.hero-scroll{
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  font-family:var(--font-m);font-size:.65rem;color:var(--muted);letter-spacing:.15em;
+  animation:fadeD 1.2s .6s ease both;z-index:2;
+}
+.scroll-arrow{width:20px;height:20px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);animation:scrollBounce 1.4s infinite}
+@keyframes scrollBounce{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(5px)}}
+@keyframes fadeD{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
+
+/* =========================================================
+   SECTION SHARED
+   ========================================================= */
+section{padding:clamp(64px,8vw,104px) clamp(20px,8vw,120px);position:relative;z-index:1}
+.s-label{font-family:var(--font-m);font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.s-title{font-size:clamp(1.75rem,4vw,2.6rem);font-weight:700;letter-spacing:-.02em;margin-bottom:12px;line-height:1.1}
+.s-sub{font-size:.98rem;color:var(--muted);max-width:500px;margin-bottom:50px;line-height:1.7}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-l{opacity:0;transform:translateX(-28px);transition:opacity .7s ease,transform .7s ease}
+.reveal-l.visible{opacity:1;transform:translateX(0)}
+.reveal-r{opacity:0;transform:translateX(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal-r.visible{opacity:1;transform:translateX(0)}
+
+/* =========================================================
+   STATS STRIP
+   ========================================================= */
+#stats-strip{
+  background:var(--surface);
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:40px clamp(20px,8vw,120px);
+}
+.stats-row{display:flex;justify-content:space-around;flex-wrap:wrap;gap:28px}
+.stat-item{text-align:center}
+.stat-num{font-family:var(--font-m);font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-lbl{font-size:.78rem;color:var(--muted);letter-spacing:.08em;margin-top:4px;text-transform:uppercase}
+
+/* =========================================================
+   ABOUT
+   ========================================================= */
+#about{background:var(--bg)}
+.about-wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:start}
+.about-text p{color:var(--muted);font-size:.98rem;margin-bottom:16px;line-height:1.8}
+.about-text p strong{color:var(--text)}
+.about-highlight{
+  display:flex;gap:14px;align-items:flex-start;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:20px 24px;margin-top:28px;
+  border-left:3px solid var(--accent);
+}
+.about-highlight p{color:var(--muted);font-size:.9rem;margin:0;line-height:1.7}
+.about-highlight strong{color:var(--accent)}
+.info-list{display:flex;flex-direction:column;gap:14px}
+.info-row{
+  display:flex;gap:14px;align-items:flex-start;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:15px 18px;transition:border-color .2s,transform .2s;
+}
+.info-row:hover{border-color:var(--accent);transform:translateX(5px)}
+.info-ico{font-size:1.25rem;min-width:28px}
+.info-lbl{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:2px}
+.info-val{font-size:.9rem;font-weight:500}
+.info-val a{color:var(--accent)}
+
+/* =========================================================
+   SKILLS
+   ========================================================= */
+#skills{background:var(--surface)}
+.skills-top{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
+.skills-bot{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.sk-card{
+  background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);
+  padding:28px;transition:border-color .25s,transform .25s;
+}
+.sk-card:hover{border-color:var(--accent);transform:translateY(-5px)}
+.sk-cat{
+  font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:22px;font-family:var(--font-m);
+  display:flex;align-items:center;gap:8px;
+}
+.sk-bar-row{margin-bottom:18px}
+.sk-bar-hd{display:flex;justify-content:space-between;margin-bottom:7px;font-size:.85rem}
+.sk-bar-hd span:last-child{font-family:var(--font-m);font-size:.73rem;color:var(--muted)}
+.bar-track{height:6px;background:var(--surface3);border-radius:100px;overflow:hidden}
+.bar-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0;transition:width 1.3s cubic-bezier(.4,0,.2,1)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{
+  padding:5px 13px;background:var(--surface3);border:1px solid var(--border);
+  border-radius:100px;font-size:.76rem;font-weight:500;color:var(--muted);
+  transition:all .2s;cursor:default;
+}
+.chip:hover{border-color:var(--accent);color:var(--accent);background:rgba(56,189,248,.05)}
+
+/* Soft skills */
+#soft-skills{background:var(--bg)}
+.soft-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px}
+.soft-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:24px 20px;text-align:center;
+  transition:border-color .25s,transform .25s;
+}
+.soft-card:hover{border-color:var(--accent2);transform:translateY(-4px)}
+.soft-icon{font-size:2rem;margin-bottom:12px}
+.soft-name{font-size:.9rem;font-weight:600;margin-bottom:6px}
+.soft-desc{font-size:.78rem;color:var(--muted);line-height:1.6}
+
+/* =========================================================
+   EDUCATION
+   ========================================================= */
+#education{background:var(--surface)}
+.timeline{position:relative;padding-left:36px;max-width:720px}
+.timeline::before{content:'';position:absolute;left:0;top:14px;bottom:14px;width:2px;background:linear-gradient(to bottom,var(--accent),var(--accent2),rgba(56,189,248,0))}
+.tl-item{position:relative;margin-bottom:40px}
+.tl-item:last-child{margin-bottom:0}
+.tl-dot{position:absolute;left:-43px;top:8px;width:16px;height:16px;border-radius:50%;background:var(--accent);border:3px solid var(--bg);box-shadow:0 0 0 2px var(--accent),0 0 12px rgba(56,189,248,.4)}
+.tl-card{
+  background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);
+  padding:26px 30px;transition:border-color .2s,transform .2s;
+}
+.tl-card:hover{border-color:var(--accent);transform:translateX(6px)}
+.tl-year{font-family:var(--font-m);font-size:.73rem;color:var(--accent);font-weight:600;letter-spacing:.08em;margin-bottom:9px;display:inline-flex;align-items:center;gap:6px}
+.tl-badge{display:inline-block;padding:3px 10px;background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.2);border-radius:100px;font-size:.68rem;font-family:var(--font-m);color:var(--accent);margin-left:10px}
+.tl-title{font-size:1.1rem;font-weight:700;margin-bottom:5px}
+.tl-sub{font-size:.87rem;color:var(--muted);line-height:1.6}
+.tl-detail{font-size:.82rem;color:var(--muted);margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+
+/* =========================================================
+   EXPERIENCE
+   ========================================================= */
+#experience{background:var(--bg)}
+.exp-wrap{max-width:820px;display:flex;flex-direction:column;gap:24px}
+.exp-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:32px;transition:border-color .2s,transform .2s;
+  position:relative;overflow:hidden;
+}
+.exp-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(to bottom,var(--accent),var(--accent2))}
+.exp-card:hover{border-color:var(--accent);transform:translateX(6px)}
+.exp-hd{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:14px}
+.exp-role{font-size:1.2rem;font-weight:700}
+.exp-company{font-size:.98rem;color:var(--accent);margin-top:3px;font-weight:500}
+.exp-badge{font-family:var(--font-m);font-size:.73rem;background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.2);border-radius:100px;padding:5px 14px;color:var(--accent);white-space:nowrap}
+.exp-loc{font-size:.84rem;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:6px}
+.exp-body p{font-size:.9rem;color:var(--muted);margin-bottom:10px;line-height:1.75}
+.exp-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+.exp-tag{padding:4px 12px;background:rgba(129,140,248,.07);border:1px solid rgba(129,140,248,.18);border-radius:100px;font-size:.72rem;font-family:var(--font-m);color:var(--accent2)}
+
+/* =========================================================
+   PROJECTS
+   ========================================================= */
+#projects{background:var(--surface)}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+.proj-card{
+  background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);
+  padding:28px;display:flex;flex-direction:column;gap:14px;
+  cursor:pointer;transition:border-color .25s,transform .25s,box-shadow .25s;
+  position:relative;overflow:hidden;
+}
+.proj-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.proj-card:hover{border-color:var(--accent);transform:translateY(-7px);box-shadow:0 16px 40px rgba(0,0,0,.35)}
+.proj-card:hover::after{transform:scaleX(1)}
+.proj-top{display:flex;justify-content:space-between;align-items:flex-start}
+.proj-icon{font-size:2rem}
+.proj-status{font-size:.68rem;padding:3px 10px;border-radius:100px;font-family:var(--font-m);background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);color:var(--accent3)}
+.proj-title{font-size:1.05rem;font-weight:700}
+.proj-desc{font-size:.87rem;color:var(--muted);flex:1;line-height:1.68}
+.proj-tags{display:flex;flex-wrap:wrap;gap:6px}
+.proj-tag{font-size:.7rem;padding:3px 10px;border-radius:100px;font-family:var(--font-m);background:rgba(56,189,248,.07);border:1px solid rgba(56,189,248,.15);color:var(--accent)}
+.proj-links{display:flex;gap:10px;margin-top:4px}
+.proj-link{font-size:.78rem;color:var(--muted);border:1px solid var(--border);border-radius:7px;padding:6px 13px;display:flex;align-items:center;gap:5px;transition:all .2s}
+.proj-link:hover{border-color:var(--accent);color:var(--accent)}
+.proj-na{font-size:.74rem;color:var(--muted);font-style:italic;opacity:.65}
+
+/* Modal */
+.modal-overlay{
+  position:fixed;inset:0;z-index:600;background:rgba(7,11,20,.85);
+  backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px;
+}
+.modal-overlay.open{display:flex}
+.modal-box{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:36px;max-width:560px;width:100%;position:relative;max-height:90vh;overflow-y:auto;
+  animation:modalIn .3s ease;
+}
+@keyframes modalIn{from{opacity:0;transform:scale(.95) translateY(20px)}to{opacity:1;transform:none}}
+.modal-close{position:absolute;top:16px;right:16px;background:none;border:1px solid var(--border);border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:1.1rem;color:var(--muted);display:flex;align-items:center;justify-content:center;transition:all .2s}
+.modal-close:hover{border-color:var(--accent);color:var(--accent)}
+.modal-icon{font-size:2.8rem;margin-bottom:16px}
+.modal-title{font-size:1.4rem;font-weight:700;margin-bottom:10px}
+.modal-desc{font-size:.9rem;color:var(--muted);line-height:1.8;margin-bottom:20px}
+.modal-section-title{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);font-family:var(--font-m);margin-bottom:10px;margin-top:18px}
+.modal-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
+.modal-feat-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.modal-feat-list li{font-size:.87rem;color:var(--muted);padding-left:20px;position:relative;line-height:1.6}
+.modal-feat-list li::before{content:'▸';position:absolute;left:0;color:var(--accent)}
+
+/* =========================================================
+   WHAT I'M LEARNING
+   ========================================================= */
+#learning{background:var(--bg)}
+.learning-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
+.learn-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:24px;transition:border-color .2s,transform .2s;
+}
+.learn-card:hover{border-color:var(--accent2);transform:translateY(-4px)}
+.learn-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.learn-icon{font-size:1.6rem}
+.learn-pct{font-family:var(--font-m);font-size:.75rem;color:var(--accent2)}
+.learn-name{font-size:.93rem;font-weight:600;margin-bottom:6px}
+.learn-desc{font-size:.79rem;color:var(--muted);line-height:1.6;margin-bottom:14px}
+.learn-track{height:4px;background:var(--surface2);border-radius:100px;overflow:hidden}
+.learn-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--accent2),var(--accent));width:0;transition:width 1.3s cubic-bezier(.4,0,.2,1)}
+
+/* =========================================================
+   CERTIFICATIONS
+   ========================================================= */
+#certifications{background:var(--surface)}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.cert-card{
+  background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);
+  padding:24px;display:flex;gap:16px;align-items:flex-start;
+  transition:border-color .2s,transform .2s;
+}
+.cert-card:hover{border-color:var(--accent2);transform:translateY(-4px)}
+.cert-icon{font-size:2.2rem;min-width:44px}
+.cert-name{font-size:.95rem;font-weight:700;margin-bottom:5px}
+.cert-issuer{font-size:.8rem;color:var(--muted)}
+.cert-year{font-family:var(--font-m);font-size:.7rem;color:var(--accent);margin-top:6px}
+.cert-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  margin-top:8px;padding:3px 10px;border-radius:100px;
+  font-size:.68rem;font-family:var(--font-m);
+  background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);color:var(--accent3);
+}
+
+/* =========================================================
+   ACHIEVEMENTS
+   ========================================================= */
+#achievements{background:var(--bg)}
+.ach-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.ach-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:26px;text-align:center;
+  transition:border-color .25s,transform .25s;
+  position:relative;overflow:hidden;
+}
+.ach-card::before{content:'';position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:100px;height:80px;background:radial-gradient(circle,rgba(251,146,60,.12),transparent 70%);pointer-events:none}
+.ach-card:hover{border-color:var(--accent4);transform:translateY(-5px)}
+.ach-icon{font-size:2.4rem;margin-bottom:14px}
+.ach-title{font-size:1rem;font-weight:700;margin-bottom:8px}
+.ach-desc{font-size:.83rem;color:var(--muted);line-height:1.65}
+
+/* =========================================================
+   ACTIVITY GRID (GitHub-style)
+   ========================================================= */
+#activity{background:var(--surface)}
+.activity-inner{max-width:820px}
+.activity-desc{font-size:.88rem;color:var(--muted);margin-bottom:28px;line-height:1.7}
+.activity-grid{display:grid;grid-template-columns:repeat(52,1fr);gap:3px;margin-bottom:10px}
+.act-cell{height:12px;border-radius:2px;background:var(--surface2);transition:transform .15s}
+.act-cell:hover{transform:scale(1.4);cursor:default}
+.act-0{background:var(--surface2)}
+.act-1{background:rgba(56,189,248,.2)}
+.act-2{background:rgba(56,189,248,.45)}
+.act-3{background:rgba(56,189,248,.7)}
+.act-4{background:var(--accent)}
+.activity-legend{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--muted);margin-top:6px;justify-content:flex-end}
+.leg-cell{width:12px;height:12px;border-radius:2px}
+.activity-months{display:grid;grid-template-columns:repeat(12,1fr);gap:0;margin-bottom:4px}
+.act-month{font-size:.65rem;color:var(--muted);font-family:var(--font-m);text-align:center}
+
+/* =========================================================
+   RESUME
+   ========================================================= */
+#resume{
+  background:linear-gradient(135deg,rgba(56,189,248,.06) 0%,rgba(129,140,248,.06) 100%);
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  text-align:center;
+}
+.resume-inner{max-width:580px;margin:0 auto}
+.resume-inner .s-sub{margin-left:auto;margin-right:auto;text-align:center}
+.resume-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:32px;margin-top:36px;display:flex;align-items:center;gap:24px;
+  text-align:left;max-width:480px;margin-left:auto;margin-right:auto;
+  transition:border-color .2s;
+}
+.resume-card:hover{border-color:var(--accent)}
+.resume-file-icon{font-size:3rem}
+.resume-info-name{font-size:1rem;font-weight:700;margin-bottom:4px}
+.resume-info-meta{font-size:.78rem;color:var(--muted)}
+.resume-btn-wrap{margin-top:28px;display:flex;justify-content:center}
+
+/* =========================================================
+   CONTACT
+   ========================================================= */
+#contact{background:var(--bg)}
+.contact-wrap{display:grid;grid-template-columns:1fr 1.5fr;gap:52px}
+.contact-info{display:flex;flex-direction:column;gap:16px}
+.ci-item{
+  display:flex;gap:14px;align-items:flex-start;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:16px 20px;transition:border-color .2s,transform .2s;
+}
+.ci-item:hover{border-color:var(--accent);transform:translateX(4px)}
+.ci-ico{font-size:1.25rem;min-width:28px}
+.ci-lbl{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px}
+.ci-val{font-size:.9rem;font-weight:500}
+.ci-val a{color:var(--accent)}
+.contact-avail{
+  background:var(--surface);border:1px solid rgba(52,211,153,.25);border-radius:var(--radius);
+  padding:20px 22px;display:flex;align-items:center;gap:14px;margin-top:8px;
+}
+.avail-dot{width:10px;height:10px;background:var(--accent3);border-radius:50%;animation:pulseG 1.6s infinite;min-width:10px}
+.avail-text{font-size:.87rem;color:var(--muted)}.avail-text strong{color:var(--accent3)}
+.cform{display:flex;flex-direction:column;gap:16px}
+.fg{display:flex;flex-direction:column;gap:6px}
+.fg label{font-size:.8rem;color:var(--muted);font-weight:500}
+.fg input,.fg textarea{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:12px 16px;color:var(--text);font-family:var(--font-d);font-size:.9rem;
+  transition:border-color .2s,box-shadow .2s;outline:none;resize:vertical;
+}
+.fg input:focus,.fg textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(56,189,248,.1)}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+#form-status{font-size:.84rem;color:var(--accent3);min-height:20px;font-family:var(--font-m)}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+footer{
+  background:var(--surface);border-top:1px solid var(--border);
+  padding:48px clamp(20px,8vw,120px) 32px;
+}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.ft-brand{font-family:var(--font-m);font-size:1rem;color:var(--accent);margin-bottom:12px;font-weight:600}
+.ft-tagline{font-size:.85rem;color:var(--muted);line-height:1.7;max-width:280px}
+.ft-col-title{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:14px;font-family:var(--font-m)}
+.ft-links{display:flex;flex-direction:column;gap:10px}
+.ft-links a{font-size:.85rem;color:var(--muted);transition:color .2s}
+.ft-links a:hover{color:var(--accent)}
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+  padding-top:24px;border-top:1px solid var(--border);
+}
+.ft-copy{font-size:.8rem;color:var(--muted)}
+.ft-copy span{color:var(--accent)}
+.ft-made{font-size:.78rem;color:var(--muted);font-family:var(--font-m)}
+.ft-socials{display:flex;gap:10px}
+.ft-soc{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.9rem;transition:all .2s}
+.ft-soc:hover{border-color:var(--accent);color:var(--accent)}
+
+/* =========================================================
+   SCROLL TOP
+   ========================================================= */
+#scroll-top{
+  position:fixed;bottom:28px;right:28px;z-index:400;
+  width:44px;height:44px;background:var(--accent);border:none;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:1.1rem;color:#070b14;
+  box-shadow:0 4px 20px rgba(56,189,248,.35);
+  opacity:0;pointer-events:none;transition:opacity .3s,transform .2s;
+}
+#scroll-top.vis{opacity:1;pointer-events:all}
+#scroll-top:hover{transform:translateY(-3px)}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media(max-width:1024px){
+  .skills-top,.skills-bot{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:900px){
+  .nav-links{display:none}
+  .ham{display:flex}
+  .about-wrap{grid-template-columns:1fr}
+  .contact-wrap{grid-template-columns:1fr}
+  .fg-row{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  section{padding:52px 20px}
+  .hero-btns{flex-direction:column}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .activity-grid{grid-template-columns:repeat(26,1fr)}
+  .activity-months{grid-template-columns:repeat(6,1fr)}
+}
+  </style>
+</head>
+<body>
+
+<!-- ======================================================= LOADER -->
+<div id="loader">
+  <div class="ld-logo">&lt; S.Nandaluru /&gt;</div>
+  <div class="ld-bar-track"><div class="ld-bar-fill"></div></div>
+  <div class="ld-text">INITIALIZING PORTFOLIO...</div>
+</div>
+
+<!-- PARTICLES -->
+<canvas id="particles-canvas"></canvas>
+
+<!-- ======================================================= NAV -->
+<nav id="navbar">
+  <div class="nav-logo">&lt;santhosh /&gt;</div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-r">
+    <button id="theme-btn" aria-label="Toggle theme">🌙</button>
+    <button class="ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mob-menu" id="mob-menu">
+  <a href="#about"         onclick="closeMob()">About</a>
+  <a href="#skills"        onclick="closeMob()">Skills</a>
+  <a href="#education"     onclick="closeMob()">Education</a>
+  <a href="#experience"    onclick="closeMob()">Experience</a>
+  <a href="#projects"      onclick="closeMob()">Projects</a>
+  <a href="#certifications"onclick="closeMob()">Certifications</a>
+  <a href="#achievements"  onclick="closeMob()">Achievements</a>
+  <a href="#contact"       onclick="closeMob()">Contact</a>
+</div>
+
+<!-- ======================================================= HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Available for Opportunities · Open to Work
+    </div>
+    <h1 class="hero-name">Hi, I'm<br><span class="grad">Santhosh Nandaluru</span></h1>
+    <div class="hero-typing-wrap" id="typing-out"><span class="cursor"></span></div>
+    <p class="hero-desc">
+      A motivated <strong>software developer</strong> based in <strong>Cuddapah, Andhra Pradesh</strong> with a passion for Python, Java, QA Automation, and SQL. Currently building real-world expertise at <strong>KodNest Technologies</strong>, Bengaluru.
+    </p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-p">💬 Hire Me</a>
+      <a href="#projects" class="btn btn-o">🚀 My Projects</a>
+      <a href="#resume" class="btn btn-g">📄 Resume</a>
+    </div>
+    <div class="hero-socials">
+      <a href="https://www.linkedin.com/in/santhoshnandaluru09" target="_blank" class="soc-link" aria-label="LinkedIn">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="mailto:nandalurusanthosh789@gmail.com" class="soc-link" aria-label="Email">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+      </a>
+      <a href="tel:+917569119445" class="soc-link" aria-label="Phone">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.18 2.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.06 6.06l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+      </a>
+      <a href="https://github.com/" target="_blank" class="soc-link" aria-label="GitHub">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-arrow"></div>SCROLL</div>
+</section>
+
+<!-- ======================================================= STATS STRIP -->
+<div id="stats-strip">
+  <div class="stats-row">
+    <div class="stat-item reveal">
+      <div class="stat-num" data-target="5">0</div>
+      <div class="stat-lbl">Months Experience</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num" data-target="5">0</div>
+      <div class="stat-lbl">Core Technologies</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num" data-target="3">0</div>
+      <div class="stat-lbl">Python Projects</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num" data-target="2">0</div>
+      <div class="stat-lbl">Certifications</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num" data-target="2023">0</div>
+      <div class="stat-lbl">Graduated</div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================= ABOUT -->
+<section id="about">
+  <div class="s-label reveal">// about.me</div>
+  <h2 class="s-title reveal">Who I Am</h2>
+  <p class="s-sub reveal">A snapshot of my background, mission, and what drives me every day.</p>
+  <div class="about-wrap">
+    <div class="reveal-l">
+      <div class="about-text">
+        <p>Hello! I'm <strong>Santhosh Nandaluru</strong>, a passionate and driven software developer from <strong>Cuddapah, Andhra Pradesh, India</strong>. I graduated with a <strong>B.Tech from Annamacharya Institute of Technology & Sciences</strong> in 2023.</p>
+        <p>Currently working as an <strong>Associate at KodNest Technologies</strong> in Bengaluru, I am actively honing my skills across Python, Java, SQL, and QA Automation in a professional, collaborative environment.</p>
+        <p>I am deeply interested in leveraging technology to solve real-world problems. My goal is to grow into a full-fledged <strong>Software Engineer or AI/ML Engineer</strong>, building intelligent systems that make a meaningful impact.</p>
+        <p>I believe in continuous learning, clean code, and turning ideas into reliable, efficient software. Whether it's automating workflows, writing structured queries, or building Python mini-projects — I bring curiosity and commitment to everything I do.</p>
+      </div>
+      <div class="about-highlight">
+        <div>
+          <p>🎯 <strong>Current Focus:</strong> Deepening Python and Java skills, exploring AI/ML fundamentals, and building production-quality QA automation frameworks to advance toward software engineering and AI engineering roles.</p>
+        </div>
+      </div>
+    </div>
+    <div class="info-list reveal-r">
+      <div class="info-row">
+        <div class="info-ico">👤</div>
+        <div><div class="info-lbl">Full Name</div><div class="info-val">Santhosh Nandaluru</div></div>
+      </div>
+      <div class="info-row">
+        <div class="info-ico">📍</div>
+        <div><div class="info-lbl">Location</div><div class="info-val">Cuddapah, Andhra Pradesh, India</div></div>
+      </div>
+      <div class="info-row">
+        <div class="info-ico">💼</div>
+        <div><div class="info-lbl">Current Role</div><div class="info-val">Associate @ KodNest Technologies, Bengaluru</div></div>
+      </div>
+      <div class="info-row">
+        <div class="info-ico">🎓</div>
+        <div><div class="info-lbl">Degree</div><div class="info-val">B.Tech — AITS, Rajampet (2023)</div></div>
+      </div>
+      <div class="info-row">
+        <div class="info-ico">📧</div>
+        <div><div class="info-lbl">Email</div><div class="info-val"><a href="mailto:nandalurusanthosh789@gmail.com">nandalurusanthosh789@gmail.com</a></div></div>
+      </div>
+      <div class="info-row">
+        <div class="info-ico">📞</div>
+        <div><div class="info-lbl">Phone</div><div class="info-val">+91 7569119445</div></div>
+      </div>
+      <div class="info-row">
+        <div class="info-ico">🔗</div>
+        <div><div class="info-lbl">LinkedIn</div><div class="info-val"><a href="https://www.linkedin.com/in/santhoshnandaluru09" target="_blank">santhoshnandaluru09</a></div></div>
+      </div>
+      <div class="info-row">
+        <div class="info-ico">🌐</div>
+        <div><div class="info-lbl">Languages</div><div class="info-val">Telugu (Native), English (Professional)</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= SKILLS -->
+<section id="skills">
+  <div class="s-label reveal">// skills.technical</div>
+  <h2 class="s-title reveal">Technical Skills</h2>
+  <p class="s-sub reveal">Technologies I've worked with and continue to grow in.</p>
+  <div class="skills-top">
+    <div class="sk-card reveal">
+      <div class="sk-cat">⌨️ Programming Languages</div>
+      <div class="sk-bar-row"><div class="sk-bar-hd"><span>Python</span><span>85%</span></div><div class="bar-track"><div class="bar-fill" data-w="85"></div></div></div>
+      <div class="sk-bar-row"><div class="sk-bar-hd"><span>Java</span><span>75%</span></div><div class="bar-track"><div class="bar-fill" data-w="75"></div></div></div>
+      <div class="sk-bar-row"><div class="sk-bar-hd"><span>SQL</span><span>80%</span></div><div class="bar-track"><div class="bar-fill" data-w="80"></div></div></div>
+    </div>
+    <div class="sk-card reveal">
+      <div class="sk-cat">🧪 QA & Testing</div>
+      <div class="sk-bar-row"><div class="sk-bar-hd"><span>QA Automation</span><span>80%</span></div><div class="bar-track"><div class="bar-fill" data-w="80"></div></div></div>
+      <div class="sk-bar-row"><div class="sk-bar-hd"><span>Manual Testing</span><span>82%</span></div><div class="bar-track"><div class="bar-fill" data-w="82"></div></div></div>
+      <div class="sk-bar-row"><div class="sk-bar-hd"><span>Test Case Design</span><span>75%</span></div><div class="bar-track"><div class="bar-fill" data-w="75"></div></div></div>
+    </div>
+  </div>
+  <div class="skills-bot" style="margin-top:24px">
+    <div class="sk-card reveal">
+      <div class="sk-cat">🤖 AI / ML & Data Interests</div>
+      <div class="chips">
+        <span class="chip">Python for AI/ML</span>
+        <span class="chip">Data Analysis</span>
+        <span class="chip">Automation</span>
+        <span class="chip">AI Fluency</span>
+        <span class="chip">Machine Learning Basics</span>
+        <span class="chip">Data Structures</span>
+        <span class="chip">Algorithms</span>
+      </div>
+    </div>
+    <div class="sk-card reveal">
+      <div class="sk-cat">🛠️ Tools & Concepts</div>
+      <div class="chips">
+        <span class="chip">Git & GitHub</span>
+        <span class="chip">OOP Principles</span>
+        <span class="chip">SDLC</span>
+        <span class="chip">Agile Basics</span>
+        <span class="chip">Debugging</span>
+        <span class="chip">File I/O</span>
+        <span class="chip">REST Concepts</span>
+        <span class="chip">CLI Tools</span>
+        <span class="chip">Problem Solving</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= SOFT SKILLS -->
+<section id="soft-skills">
+  <div class="s-label reveal">// skills.soft</div>
+  <h2 class="s-title reveal">Soft Skills</h2>
+  <p class="s-sub reveal">The interpersonal and professional qualities I bring to every team.</p>
+  <div class="soft-grid">
+    <div class="soft-card reveal"><div class="soft-icon">🧠</div><div class="soft-name">Analytical Thinking</div><div class="soft-desc">Breaking down complex problems into logical, solvable components.</div></div>
+    <div class="soft-card reveal"><div class="soft-icon">🔄</div><div class="soft-name">Adaptability</div><div class="soft-desc">Quickly adjusting to new tools, languages, and environments.</div></div>
+    <div class="soft-card reveal"><div class="soft-icon">🤝</div><div class="soft-name">Team Collaboration</div><div class="soft-desc">Working effectively with cross-functional teams and peers.</div></div>
+    <div class="soft-card reveal"><div class="soft-icon">📚</div><div class="soft-name">Continuous Learning</div><div class="soft-desc">Actively pursuing new certifications, courses, and projects.</div></div>
+    <div class="soft-card reveal"><div class="soft-icon">⏰</div><div class="soft-name">Time Management</div><div class="soft-desc">Prioritizing tasks and consistently meeting deadlines.</div></div>
+    <div class="soft-card reveal"><div class="soft-icon">💬</div><div class="soft-name">Communication</div><div class="soft-desc">Clearly conveying technical ideas to both technical and non-technical stakeholders.</div></div>
+    <div class="soft-card reveal"><div class="soft-icon">🎯</div><div class="soft-name">Attention to Detail</div><div class="soft-desc">Thorough testing and code review to catch issues before they escalate.</div></div>
+    <div class="soft-card reveal"><div class="soft-icon">💡</div><div class="soft-name">Problem Solving</div><div class="soft-desc">Finding creative, efficient solutions to engineering challenges.</div></div>
+  </div>
+</section>
+
+<!-- ======================================================= EDUCATION -->
+<section id="education">
+  <div class="s-label reveal">// education.timeline</div>
+  <h2 class="s-title reveal">Education</h2>
+  <p class="s-sub reveal">My academic foundation and the knowledge it built.</p>
+  <div class="timeline">
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-year">🎓 2019 – 2023 <span class="tl-badge">Graduated</span></div>
+        <div class="tl-title">Bachelor of Technology (B.Tech)</div>
+        <div class="tl-sub">Annamacharya Institute of Technology & Sciences (Autonomous)<br>New Bowenpally, Rajampet, Andhra Pradesh</div>
+        <div class="tl-detail">Four-year undergraduate program covering core computer science and engineering concepts including programming, data structures, algorithms, software engineering, databases, and operating systems.</div>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-dot" style="background:var(--accent2);box-shadow:0 0 0 2px var(--accent2),0 0 12px rgba(129,140,248,.4)"></div>
+      <div class="tl-card">
+        <div class="tl-year" style="color:var(--accent2)">📘 2026 – Ongoing</div>
+        <div class="tl-title">Professional Development</div>
+        <div class="tl-sub">KodNest Technologies, Bengaluru · Associate Role</div>
+        <div class="tl-detail">Ongoing hands-on professional training and real-world experience in Python, Java, QA Automation, and SQL. Supplemented with structured online courses in AI Fluency and advanced Python programming.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= EXPERIENCE -->
+<section id="experience">
+  <div class="s-label reveal">// experience.work</div>
+  <h2 class="s-title reveal">Work Experience</h2>
+  <p class="s-sub reveal">Professional journey and contributions so far.</p>
+  <div class="exp-wrap">
+    <div class="exp-card reveal">
+      <div class="exp-hd">
+        <div>
+          <div class="exp-role">Associate</div>
+          <div class="exp-company">KodNest Technologies</div>
+        </div>
+        <div class="exp-badge">Feb 2026 – Present</div>
+      </div>
+      <div class="exp-loc">📍 Bengaluru, Karnataka, India &nbsp;·&nbsp; Full-time</div>
+      <div class="exp-body">
+        <p>Working as an Associate at KodNest Technologies, gaining structured professional experience in software development workflows, Python programming, Java fundamentals, and QA practices within a team-based setting.</p>
+        <p>Actively participating in learning programs, code reviews, and project work — translating academic knowledge into practical engineering skills across multiple domains.</p>
+        <p>Contributing to QA processes including test case creation, manual testing, and exploring automation tooling to improve test coverage and reliability.</p>
+      </div>
+      <div class="exp-tags">
+        <span class="exp-tag">Python</span>
+        <span class="exp-tag">Java</span>
+        <span class="exp-tag">SQL</span>
+        <span class="exp-tag">QA Automation</span>
+        <span class="exp-tag">Manual Testing</span>
+        <span class="exp-tag">Git</span>
+        <span class="exp-tag">Agile</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= PROJECTS -->
+<section id="projects">
+  <div class="s-label reveal">// projects.showcase</div>
+  <h2 class="s-title reveal">Projects</h2>
+  <p class="s-sub reveal">Hands-on builds demonstrating real Python skills and problem-solving. Click any card for details.</p>
+  <div class="proj-grid">
+
+    <div class="proj-card reveal" onclick="openModal('m1')">
+      <div class="proj-top">
+        <div class="proj-icon">🔢</div>
+        <div class="proj-status">✅ Completed</div>
+      </div>
+      <div class="proj-title">Number Guessing Game</div>
+      <div class="proj-desc">An interactive Python console game where the player tries to guess a randomly generated number within a set number of attempts. Includes difficulty levels and score tracking.</div>
+      <div class="proj-tags">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">Random</span>
+        <span class="proj-tag">Loops</span>
+        <span class="proj-tag">Conditionals</span>
+      </div>
+      <div class="proj-links">
+        <span class="proj-link">🔍 View Details</span>
+        <span class="proj-na">GitHub – Not Available</span>
+      </div>
+    </div>
+
+    <div class="proj-card reveal" onclick="openModal('m2')">
+      <div class="proj-top">
+        <div class="proj-icon">🧮</div>
+        <div class="proj-status">✅ Completed</div>
+      </div>
+      <div class="proj-title">Calculator App</div>
+      <div class="proj-desc">A modular Python calculator handling all basic arithmetic operations — addition, subtraction, multiplication, and division — with input validation and clean CLI interaction.</div>
+      <div class="proj-tags">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">Functions</span>
+        <span class="proj-tag">OOP</span>
+        <span class="proj-tag">Validation</span>
+      </div>
+      <div class="proj-links">
+        <span class="proj-link">🔍 View Details</span>
+        <span class="proj-na">GitHub – Not Available</span>
+      </div>
+    </div>
+
+    <div class="proj-card reveal" onclick="openModal('m3')">
+      <div class="proj-top">
+        <div class="proj-icon">📒</div>
+        <div class="proj-status">✅ Completed</div>
+      </div>
+      <div class="proj-title">Contact Book App</div>
+      <div class="proj-desc">A Python CLI application for managing contacts — add, search, view, update, and delete entries. Uses file handling and dictionary structures for persistent data storage.</div>
+      <div class="proj-tags">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">File I/O</span>
+        <span class="proj-tag">Dictionary</span>
+        <span class="proj-tag">CRUD</span>
+      </div>
+      <div class="proj-links">
+        <span class="proj-link">🔍 View Details</span>
+        <span class="proj-na">GitHub – Not Available</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECT MODALS -->
+<div class="modal-overlay" id="m1" onclick="closeModal(event,'m1')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="document.getElementById('m1').classList.remove('open')">✕</button>
+    <div class="modal-icon">🔢</div>
+    <div class="modal-title">Number Guessing Game</div>
+    <div class="modal-desc">An interactive Python console game where the user is challenged to guess a randomly generated number. The game provides hints (too high / too low) and tracks the number of attempts taken.</div>
+    <div class="modal-section-title">Key Features</div>
+    <ul class="modal-feat-list">
+      <li>Random number generation within configurable range</li>
+      <li>Attempt counter with win/lose conditions</li>
+      <li>User-friendly hints: "Too High" or "Too Low"</li>
+      <li>Input validation to handle non-numeric entries</li>
+      <li>Replay option after each game session</li>
+    </ul>
+    <div class="modal-section-title">Technologies Used</div>
+    <div class="modal-tags">
+      <span class="proj-tag">Python 3</span><span class="proj-tag">random module</span><span class="proj-tag">while loops</span><span class="proj-tag">conditionals</span>
+    </div>
+    <div class="modal-section-title">What I Learned</div>
+    <ul class="modal-feat-list">
+      <li>Core Python control flow and loop structures</li>
+      <li>Working with the random standard library</li>
+      <li>Input handling and basic exception management</li>
+    </ul>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m2" onclick="closeModal(event,'m2')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="document.getElementById('m2').classList.remove('open')">✕</button>
+    <div class="modal-icon">🧮</div>
+    <div class="modal-title">Calculator App</div>
+    <div class="modal-desc">A Python-based command-line calculator that supports all core arithmetic operations. Built with a modular structure using functions and basic OOP principles for clean, reusable code.</div>
+    <div class="modal-section-title">Key Features</div>
+    <ul class="modal-feat-list">
+      <li>Addition, subtraction, multiplication, and division</li>
+      <li>Division-by-zero error handling</li>
+      <li>Continuous calculation mode (chain operations)</li>
+      <li>Modular code structure using functions</li>
+      <li>Clear, descriptive output formatting</li>
+    </ul>
+    <div class="modal-section-title">Technologies Used</div>
+    <div class="modal-tags">
+      <span class="proj-tag">Python 3</span><span class="proj-tag">Functions</span><span class="proj-tag">OOP basics</span><span class="proj-tag">Exception Handling</span>
+    </div>
+    <div class="modal-section-title">What I Learned</div>
+    <ul class="modal-feat-list">
+      <li>Writing modular, reusable Python functions</li>
+      <li>Handling runtime exceptions gracefully</li>
+      <li>Designing clean CLI user experiences</li>
+    </ul>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m3" onclick="closeModal(event,'m3')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="document.getElementById('m3').classList.remove('open')">✕</button>
+    <div class="modal-icon">📒</div>
+    <div class="modal-title">Contact Book App</div>
+    <div class="modal-desc">A feature-complete Python CLI contact manager with full CRUD functionality. Contacts are persisted to a file, making data available across sessions.</div>
+    <div class="modal-section-title">Key Features</div>
+    <ul class="modal-feat-list">
+      <li>Add, view, update, and delete contacts</li>
+      <li>Search contacts by name or phone number</li>
+      <li>Persistent storage using file handling (JSON/text)</li>
+      <li>Dictionary-based in-memory data structure</li>
+      <li>User-friendly menu-driven interface</li>
+    </ul>
+    <div class="modal-section-title">Technologies Used</div>
+    <div class="modal-tags">
+      <span class="proj-tag">Python 3</span><span class="proj-tag">File I/O</span><span class="proj-tag">Dictionaries</span><span class="proj-tag">JSON</span><span class="proj-tag">CRUD</span>
+    </div>
+    <div class="modal-section-title">What I Learned</div>
+    <ul class="modal-feat-list">
+      <li>File handling — reading and writing persistent data</li>
+      <li>Designing CRUD workflows in Python</li>
+      <li>Building structured menu-driven CLI applications</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ======================================================= WHAT I'M LEARNING -->
+<section id="learning">
+  <div class="s-label reveal">// currently.learning</div>
+  <h2 class="s-title reveal">What I'm Learning</h2>
+  <p class="s-sub reveal">Areas I'm actively exploring and leveling up in right now.</p>
+  <div class="learning-grid">
+    <div class="learn-card reveal">
+      <div class="learn-head"><div class="learn-icon">🤖</div><div class="learn-pct">70%</div></div>
+      <div class="learn-name">AI / Machine Learning Fundamentals</div>
+      <div class="learn-desc">Exploring supervised learning, model training basics, and Python libraries for ML.</div>
+      <div class="learn-track"><div class="learn-fill" data-lw="70"></div></div>
+    </div>
+    <div class="learn-card reveal">
+      <div class="learn-head"><div class="learn-icon">🗄️</div><div class="learn-pct">80%</div></div>
+      <div class="learn-name">Advanced SQL</div>
+      <div class="learn-desc">Deep-diving into joins, subqueries, window functions, and database optimization.</div>
+      <div class="learn-track"><div class="learn-fill" data-lw="80"></div></div>
+    </div>
+    <div class="learn-card reveal">
+      <div class="learn-head"><div class="learn-icon">🧪</div><div class="learn-pct">75%</div></div>
+      <div class="learn-name">Selenium & Test Automation</div>
+      <div class="learn-desc">Building automated test suites with Selenium WebDriver and Python.</div>
+      <div class="learn-track"><div class="learn-fill" data-lw="75"></div></div>
+    </div>
+    <div class="learn-card reveal">
+      <div class="learn-head"><div class="learn-icon">☕</div><div class="learn-pct">68%</div></div>
+      <div class="learn-name">Java DSA</div>
+      <div class="learn-desc">Strengthening data structures and algorithm skills using Java for interviews.</div>
+      <div class="learn-track"><div class="learn-fill" data-lw="68"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= CERTIFICATIONS -->
+<section id="certifications">
+  <div class="s-label reveal">// certs.earned</div>
+  <h2 class="s-title reveal">Certifications</h2>
+  <p class="s-sub reveal">Credentials and completed courses that validate my skills.</p>
+  <div class="cert-grid">
+    <div class="cert-card reveal">
+      <div class="cert-icon">🤖</div>
+      <div>
+        <div class="cert-name">AI Fluency</div>
+        <div class="cert-issuer">Structured Online Course</div>
+        <div class="cert-year">📅 2025–2026</div>
+        <div class="cert-badge">✅ Completed</div>
+      </div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-icon">🐍</div>
+      <div>
+        <div class="cert-name">Python Programming – 30 Days</div>
+        <div class="cert-issuer">Structured Online Course</div>
+        <div class="cert-year">📅 2025–2026</div>
+        <div class="cert-badge">✅ Completed</div>
+      </div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-icon">🏆</div>
+      <div>
+        <div class="cert-name">Additional Certifications</div>
+        <div class="cert-issuer">Information Not Available</div>
+        <div class="cert-year" style="opacity:.5">—</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="s-label reveal">// achievements.highlights</div>
+  <h2 class="s-title reveal">Achievements</h2>
+  <p class="s-sub reveal">Milestones and accomplishments in my professional and learning journey.</p>
+  <div class="ach-grid">
+    <div class="ach-card reveal">
+      <div class="ach-icon">🎓</div>
+      <div class="ach-title">B.Tech Graduate</div>
+      <div class="ach-desc">Successfully completed a 4-year B.Tech degree from Annamacharya Institute of Technology & Sciences in 2023.</div>
+    </div>
+    <div class="ach-card reveal">
+      <div class="ach-icon">🤖</div>
+      <div class="ach-title">AI Fluency Certified</div>
+      <div class="ach-desc">Completed a comprehensive AI Fluency certification course, gaining foundational understanding of modern AI systems and concepts.</div>
+    </div>
+    <div class="ach-card reveal">
+      <div class="ach-icon">🐍</div>
+      <div class="ach-title">30-Day Python Course</div>
+      <div class="ach-desc">Completed a rigorous structured 30-day Python course covering fundamentals through mini projects — Number Guessing Game, Calculator, and Contact Book App.</div>
+    </div>
+    <div class="ach-card reveal">
+      <div class="ach-icon">💼</div>
+      <div class="ach-title">Joined KodNest Technologies</div>
+      <div class="ach-desc">Secured an Associate position at KodNest Technologies, Bengaluru — a key milestone in launching a professional software development career.</div>
+    </div>
+    <div class="ach-card reveal">
+      <div class="ach-icon">🚀</div>
+      <div class="ach-title">3 Python Mini Projects</div>
+      <div class="ach-desc">Designed and built three standalone Python applications from scratch, demonstrating applied programming skills beyond coursework.</div>
+    </div>
+    <div class="ach-card reveal">
+      <div class="ach-icon">🌱</div>
+      <div class="ach-title">Consistent Self-Improvement</div>
+      <div class="ach-desc">Committed to a self-driven learning track — completing certifications, structured courses, and mock interview preparation to accelerate career growth.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= ACTIVITY -->
+<section id="activity">
+  <div class="s-label reveal">// activity.tracker</div>
+  <h2 class="s-title reveal">Learning Activity</h2>
+  <div class="activity-inner reveal">
+    <p class="activity-desc">A representation of consistent learning and coding activity throughout the year — reflecting dedication to daily practice and professional growth.</p>
+    <div class="activity-months" id="act-months"></div>
+    <div class="activity-grid" id="act-grid"></div>
+    <div class="activity-legend">
+      Less <div class="leg-cell act-0"></div><div class="leg-cell act-1"></div><div class="leg-cell act-2"></div><div class="leg-cell act-3"></div><div class="leg-cell act-4"></div> More
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= RESUME -->
+<section id="resume">
+  <div class="resume-inner">
+    <div class="s-label reveal" style="text-align:center">// resume.download</div>
+    <h2 class="s-title reveal" style="text-align:center">My Resume</h2>
+    <p class="s-sub reveal" style="text-align:center;margin:0 auto 0">A complete overview of my skills, experience, and education — ready to share with recruiters.</p>
+    <div class="resume-card reveal">
+      <div class="resume-file-icon">📄</div>
+      <div>
+        <div class="resume-info-name">Santhosh_Nandaluru_Resume.pdf</div>
+        <div class="resume-info-meta">Python Developer · Java · QA Automation · SQL · Fresher</div>
+        <div class="resume-info-meta" style="margin-top:4px;color:var(--accent3)">✅ ATS-Friendly Format</div>
+      </div>
+    </div>
+    <div class="resume-btn-wrap reveal">
+      <a href="#" class="btn btn-p" onclick="alert('Please attach your resume PDF and update this href link to your actual resume file path.')">
+        ⬇️ Download Resume (PDF)
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= CONTACT -->
+<section id="contact">
+  <div class="s-label reveal">// contact.reach</div>
+  <h2 class="s-title reveal">Get In Touch</h2>
+  <p class="s-sub reveal">Open to job opportunities, collaborations, or just a good conversation about tech.</p>
+  <div class="contact-wrap">
+    <div class="contact-info reveal-l">
+      <div class="contact-avail">
+        <div class="avail-dot"></div>
+        <div class="avail-text"><strong>Open to Work</strong> — Actively seeking Software Developer, QA Engineer, and AI/ML Engineer roles.</div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-ico">📧</div>
+        <div><div class="ci-lbl">Email</div><div class="ci-val"><a href="mailto:nandalurusanthosh789@gmail.com">nandalurusanthosh789@gmail.com</a></div></div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-ico">📞</div>
+        <div><div class="ci-lbl">Phone</div><div class="ci-val">+91 7569119445</div></div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-ico">📍</div>
+        <div><div class="ci-lbl">Location</div><div class="ci-val">Cuddapah, Andhra Pradesh, India</div></div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-ico">🔗</div>
+        <div><div class="ci-lbl">LinkedIn</div><div class="ci-val"><a href="https://www.linkedin.com/in/santhoshnandaluru09" target="_blank">linkedin.com/in/santhoshnandaluru09</a></div></div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-ico">💼</div>
+        <div><div class="ci-lbl">Current Company</div><div class="ci-val">KodNest Technologies, Bengaluru</div></div>
+      </div>
+    </div>
+    <form class="cform reveal-r" id="cform" onsubmit="sendForm(event)">
+      <div class="fg-row">
+        <div class="fg"><label for="cf-name">Full Name</label><input type="text" id="cf-name" placeholder="Your name" required></div>
+        <div class="fg"><label for="cf-email">Email Address</label><input type="email" id="cf-email" placeholder="your@email.com" required></div>
+      </div>
+      <div class="fg"><label for="cf-phone">Phone (Optional)</label><input type="tel" id="cf-phone" placeholder="+91 ..."></div>
+      <div class="fg"><label for="cf-subject">Subject</label><input type="text" id="cf-subject" placeholder="e.g. Job Opportunity / Project Collaboration" required></div>
+      <div class="fg"><label for="cf-msg">Message</label><textarea id="cf-msg" rows="5" placeholder="Write your message here..." required></textarea></div>
+      <div id="form-status"></div>
+      <button type="submit" class="btn btn-p" style="align-self:flex-start">✉️ Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- ======================================================= FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="ft-brand">&lt; Santhosh Nandaluru /&gt;</div>
+      <div class="ft-tagline">Python Developer · Java · QA Automation · SQL · Fresher based in India. Building reliable software, one line at a time.</div>
+      <div class="hero-socials" style="margin-top:20px">
+        <a href="https://www.linkedin.com/in/santhoshnandaluru09" target="_blank" class="ft-soc" aria-label="LinkedIn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="mailto:nandalurusanthosh789@gmail.com" class="ft-soc" aria-label="Email">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+        </a>
+        <a href="https://github.com/" target="_blank" class="ft-soc" aria-label="GitHub">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="ft-col-title">Navigation</div>
+      <div class="ft-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+      </div>
+    </div>
+    <div>
+      <div class="ft-col-title">More</div>
+      <div class="ft-links">
+        <a href="#certifications">Certifications</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#learning">Learning</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="ft-copy">© 2026 <span>Santhosh Nandaluru</span>. All rights reserved.</div>
+    <div class="ft-made">Built with 💙 HTML · CSS · JavaScript</div>
+  </div>
+</footer>
+
+<!-- SCROLL TOP -->
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+<!-- ======================================================= SCRIPTS -->
+<script>
+/* ─── LOADER ─── */
+window.addEventListener('load',()=>{
+  setTimeout(()=>{ document.getElementById('loader').classList.add('hidden'); },1100);
+});
+
+/* ─── PARTICLES ─── */
+(function(){
+  const cv=document.getElementById('particles-canvas');
+  const ctx=cv.getContext('2d');
+  let W,H,pts=[];
+  function resize(){ W=cv.width=innerWidth; H=cv.height=innerHeight; }
+  resize(); window.addEventListener('resize',resize);
+  function mkPt(){
+    return{x:Math.random()*W,y:Math.random()*H,
+           vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,
+           r:Math.random()*1.5+.5,op:Math.random()*.5+.1};
+  }
+  for(let i=0;i<90;i++) pts.push(mkPt());
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    const isDark=document.documentElement.getAttribute('data-theme')!=='light';
+    const c=isDark?'56,189,248':'56,130,200';
+    pts.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0||p.x>W) p.vx*=-1;
+      if(p.y<0||p.y>H) p.vy*=-1;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(${c},${p.op})`;ctx.fill();
+    });
+    pts.forEach((a,i)=>{
+      pts.slice(i+1).forEach(b=>{
+        const d=Math.hypot(a.x-b.x,a.y-b.y);
+        if(d<120){
+          ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);
+          ctx.strokeStyle=`rgba(${c},${.15*(1-d/120)})`;ctx.lineWidth=.6;ctx.stroke();
+        }
+      });
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ─── THEME ─── */
+let dark=true;
+document.getElementById('theme-btn').addEventListener('click',()=>{
+  dark=!dark;
+  document.documentElement.setAttribute('data-theme',dark?'dark':'light');
+  document.getElementById('theme-btn').textContent=dark?'🌙':'☀️';
+});
+
+/* ─── HAMBURGER ─── */
+document.getElementById('ham').addEventListener('click',()=>
+  document.getElementById('mob-menu').classList.toggle('open'));
+function closeMob(){document.getElementById('mob-menu').classList.remove('open')}
+
+/* ─── TYPING EFFECT ─── */
+const roles=['Python Developer 🐍','Java Engineer ☕','QA Automation Specialist 🧪','SQL Developer 🗄️','Software Engineer 💻','AI / ML Enthusiast 🤖','Fresher · Ready to Contribute 🚀'];
+let ri=0,ci=0,del=false;
+const tout=document.getElementById('typing-out');
+function type(){
+  const cur=roles[ri];
+  if(!del){ci++;if(ci>cur.length){del=true;setTimeout(type,1500);return;}}
+  else{ci--;if(ci===0){del=false;ri=(ri+1)%roles.length;}}
+  tout.innerHTML=cur.slice(0,ci)+'<span class="cursor"></span>';
+  setTimeout(type,del?42:88);
+}
+type();
+
+/* ─── REVEAL ON SCROLL ─── */
+const rObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:.1});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>rObs.observe(el));
+
+/* ─── SKILL BARS ─── */
+const bObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.style.width=e.target.dataset.w+'%';bObs.unobserve(e.target);}
+  });
+},{threshold:.3});
+document.querySelectorAll('.bar-fill').forEach(b=>bObs.observe(b));
+
+/* ─── LEARNING BARS ─── */
+const lObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.style.width=e.target.dataset.lw+'%';lObs.unobserve(e.target);}
+  });
+},{threshold:.3});
+document.querySelectorAll('.learn-fill').forEach(b=>lObs.observe(b));
+
+/* ─── COUNTER ANIMATION ─── */
+const cObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el=e.target.querySelector('.stat-num');
+      if(!el||el.dataset.done) return;
+      el.dataset.done='1';
+      const target=+el.dataset.target;
+      const dur=1400,step=16;
+      let cur=0,start=null;
+      function tick(ts){
+        if(!start) start=ts;
+        const prog=Math.min((ts-start)/dur,1);
+        const ease=1-Math.pow(1-prog,3);
+        cur=Math.round(ease*target);
+        el.textContent=cur.toLocaleString();
+        if(prog<1) requestAnimationFrame(tick);
+        else el.textContent=target.toLocaleString();
+      }
+      requestAnimationFrame(tick);
+      cObs.unobserve(e.target);
+    }
+  });
+},{threshold:.4});
+document.querySelectorAll('.stat-item').forEach(el=>cObs.observe(el));
+
+/* ─── ACTIVITY GRID ─── */
+(function(){
+  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const mGrid=document.getElementById('act-months');
+  const aGrid=document.getElementById('act-grid');
+  if(!mGrid||!aGrid) return;
+  months.forEach(m=>{const d=document.createElement('div');d.className='act-month';d.textContent=m;mGrid.appendChild(d);});
+  const seed=[1,0,2,0,0,1,3,4,2,1,0,0,2,3,1,0,4,3,2,1,0,1,2,4,3,2,0,1,0,2,3,4,1,0,2,1,3,2,0,4,1,2,3,0,1,2,4,3,1,2,3,4];
+  for(let w=0;w<52;w++){
+    for(let d=0;d<7;d++){
+      const cell=document.createElement('div');
+      const lvl=seed[(w*7+d)%seed.length];
+      cell.className=`act-cell act-${lvl}`;
+      const tip=['No activity','Low activity','Some activity','Good activity','High activity'][lvl];
+      cell.title=tip;
+      aGrid.appendChild(cell);
+    }
+  }
+})();
+
+/* ─── NAV ACTIVE LINK ─── */
+const sections=document.querySelectorAll('section[id]');
+const navAs=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{ if(scrollY>=s.offsetTop-80) cur=s.id; });
+  navAs.forEach(a=>{ a.classList.toggle('active',a.getAttribute('href')==='#'+cur); });
+  document.getElementById('scroll-top').classList.toggle('vis',scrollY>400);
+});
+
+/* ─── MODAL ─── */
+function openModal(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
+function closeModal(e,id){if(e.target===document.getElementById(id)){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape') document.querySelectorAll('.modal-overlay.open').forEach(m=>{m.classList.remove('open');document.body.style.overflow='';});
+});
+
+/* ─── CONTACT FORM ─── */
+function sendForm(e){
+  e.preventDefault();
+  const st=document.getElementById('form-status');
+  st.textContent='✅ Thank you! This is a static demo. Please reach out directly via email or LinkedIn.';
+  st.style.color='var(--accent3)';
+  document.getElementById('cform').reset();
+}
+</script>
+</body>
+</html>
